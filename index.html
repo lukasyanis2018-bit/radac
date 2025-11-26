@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avocat Rădac Daniela</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(180deg, #e8e8e8 0%, #f0f0f0 50%, #e8e8e8 100%);
+            color: #fff;
+        }
+
+        /* Header */
+        header {
+            background-color: #000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .menu-icon {
+            width: 40px;
+            height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .menu-icon span {
+            width: 100%;
+            height: 4px;
+            background-color: #fff;
+            border-radius: 2px;
+        }
+
+        .logo {
+            font-size: 20px;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    #000,
+                    #000 30px,
+                    #1a1a1a 30px,
+                    #1a1a1a 60px
+                ),
+                linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(20,20,20,0.98) 100%);
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255,255,255,0.02) 2px,
+                    rgba(255,255,255,0.02) 4px
+                );
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            line-height: 1.3;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background-color: rgba(255,255,255,0.98);
+            padding: 30px 50px;
+            border-radius: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .profile-text {
+            text-align: left;
+            color: #000;
+            font-size: 22px;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            background-color: #fff;
+            color: #000;
+            padding: 18px 60px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 20px;
+            border: 2px solid #fff;
+            transition: all 0.3s;
+            display: inline-block;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: #fff;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .tagline {
+            margin-top: 50px;
+            font-size: 24px;
+            font-style: italic;
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Services Section */
+        .services {
+            background: linear-gradient(135deg, #e8e8e8 0%, #d4d4d4 50%, #e8e8e8 100%);
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0,0,0,0.02) 35px, rgba(0,0,0,0.02) 70px);
+            pointer-events: none;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            color: #000;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card {
+            background-color: #000;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .service-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .service-card p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            text-align: left;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .learn-more {
+            background-color: #fff;
+            color: #000;
+            padding: 12px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .learn-more:hover {
+            background-color: #ccc;
+        }
+
+        /* Location Section */
+        .location {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 50%, #1a1a1a 100%);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .location p {
+            font-size: 24px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 50%, #f5f5f5 100%);
+            padding: 80px 20px;
+            color: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle, rgba(0,0,0,0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .about h3 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .about p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .about-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin: 30px auto;
+            display: block;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(26,26,26,0.98) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="diag" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0,10 l10,-10 M-2.5,2.5 l5,-5 M7.5,12.5 l5,-5" stroke="rgba(255,255,255,0.02)" stroke-width="1"/></pattern></defs><rect fill="%23111" width="1200" height="400"/><rect fill="url(%23diag)" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .quote-section blockquote {
+            font-size: 32px;
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-section cite {
+            display: block;
+            margin-top: 20px;
+            font-size: 24px;
+            font-style: normal;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Collaboration Section */
+        .collaboration {
+            background: linear-gradient(180deg, #000 0%, #1a1a1a 50%, #000 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .collaboration::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .collaboration h2 {
+            font-size: 42px;
+            margin-bottom: 60px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .step p {
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .step-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: linear-gradient(180deg, #000 0%, #0a0a0a 50%, #000 100%);
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(255,255,255,0.01) 25%, rgba(255,255,255,0.01) 26%, transparent 27%, transparent 74%, rgba(255,255,255,0.01) 75%, rgba(255,255,255,0.01) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255,255,255,0.01) 25%, rgba(255,255,255,0.01) 26%, transparent 27%, transparent 74%, rgba(255,255,255,0.01) 75%, rgba(255,255,255,0.01) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #444;
+            padding: 25px 0;
+        }
+
+        .faq-question {
+            font-size: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, #000 0%, #0f0f0f 50%, #000 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #333;
+            position: relative;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 5px;
+            cursor: pointer;
+        }
+
+        footer p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .phone-display {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #fff;
+        }
+
+        .phone-display a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .phone-display a:hover {
+            color: #ccc;
+        }
+
+        /* Domain Page Styles */
+        .domain-page {
+            background-color: #e8e8e8;
+            color: #000;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .domain-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23444" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px 60px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .domain-hero h1 {
+            font-size: 56px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .domain-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 40px;
+            color: #000;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .back-link:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .domain-intro {
+            margin-bottom: 60px;
+        }
+
+        .domain-intro h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .domain-intro p {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .domain-services {
+            background-color: #000;
+            padding: 50px;
+            border-radius: 15px;
+            margin-bottom: 60px;
+            color: #fff;
+        }
+
+        .domain-services h3 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .domain-services ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .domain-services li {
+            font-size: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid #333;
+            line-height: 1.6;
+        }
+
+        .domain-services li:last-child {
+            border-bottom: none;
+        }
+
+        .why-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 60px 50px;
+            border-radius: 15px;
+            margin-bottom: 60px;
+            color: #fff;
+        }
+
+        .why-section h3 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background-color: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #fff;
+        }
+
+        .benefit-card h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .benefit-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .process-section {
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        .process-section h3 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background-color: #000;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .step-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .domain-cta {
+            background-color: #000;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 15px;
+            color: #fff;
+        }
+
+        .domain-cta h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .domain-cta p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .profile-container {
+                flex-direction: column;
+                padding: 20px 30px;
+            }
+
+            .profile-text {
+                text-align: center;
+                font-size: 18px;
+            }
+
+            .steps {
+                gap: 40px;
+            }
+
+            .service-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .domain-hero h1 {
+                font-size: 36px;
+            }
+
+            .domain-intro h2 {
+                font-size: 32px;
+            }
+
+            .domain-services,
+            .why-section,
+            .process-section {
+                padding: 30px 20px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="logo">AVOCAT RĂDAC DANIELA</div>
+    </header>
+
+    <div id="home" class="page active">
+        <section class="hero">
+            <h1>RĂDAC<br>DANIELA</h1>
+            <div class="profile-container">
+                <img src="poze/poza1.jpg" alt="Rădac Daniela" class="profile-image">
+                <div class="profile-text">
+                    Autoritate.<br>
+                    Claritate.<br>
+                    Încredere.
+                </div>
+            </div>
+            <a href="tel:+40747762956" class="cta-button">sună acum</a>
+            <p class="tagline">„Justiție cu inimă: avocat în slujba clientului."</p>
+        </section>
+
+        <section class="services" id="servicii">
+            <h2>Domenii de activitate:</h2>
+            <div class="service-cards">
+                <div class="service-card">
+                    <h3>Drept Penal</h3>
+                    <p>Dreptul penal reglementează faptele considerate infracțiuni, stabilește pedepsele și urmărește protejarea ordinii publice, a persoanelor și valorilor sociale fundamentale.</p>
+                    <button class="learn-more" onclick="showPage('drept-penal')">Află mai multe</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Dreptul Familiei</h3>
+                    <p>Dreptul familiei se ocupă cu divorțuri, relațiile personale și patrimoniale dintre soți, părinți și copii, precum și cu adopția, și tutela</p>
+                    <button class="learn-more" onclick="showPage('dreptul-familiei')">Află mai multe</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Dreptul muncii</h3>
+                    <p>Dreptul comercial tratează actele, faptele și raporturile juridice dintre profesioniști, precum și activitatea economică desfășurată în scop de profit.</p>
+                    <button class="learn-more" onclick="showPage('dreptul-muncii')">Află mai multe</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Alte Servicii</h3>
+                    <ul>
+                        <li>Înființare firme (SRL, PFA, alte forme juridice)</li>
+                        <li>Modificări act constitutiv</li>
+                        <li>Contracte comerciale</li>
+                        <li>Recuperare creante comerciale</li>
+                        <li>Litigii comerciale și reprezentare în fața instanțelor</li>
+                    </ul>
+                    <button class="learn-more" onclick="showPage('alte-servicii-1')">Află mai multe</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Alte Servicii</h3>
+                    <ul>
+                        <li>Consultanța juridica personalizata</li>
+                        <li>Mediere și negociere</li>
+                        <li>Emitere opinii legale</li>
+                        <li>Audit juridic pentru persoane fizice și juridice</li>
+                    </ul>
+                    <button class="learn-more" onclick="showPage('alte-servicii-2')">Află mai multe</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Drept Civil</h3>
+                    <p>Dreptul civil tratează raporturile juridice dintre persoane, privind bunurile, obligațiile, contractele, drepturile reale, succesiunile și protecția drepturilor individuale.</p>
+                    <button class="learn-more" onclick="showPage('drept-civil')">Află mai multe</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Dreptul succesoral</h3>
+                    <p>Dreptul succesoral reglementează transmiterea patrimoniului unei persoane decedate către moștenitori, stabilind condițiile, ordinea și categoriile de moștenitori legali sau testamentari.</p>
+                    <button class="learn-more" onclick="showPage('drept-succesoral')">Află mai multe</button>
+                </div>
+
+                <div class="service-card">
+                    <h3>Drept Administrativ și fiscal</h3>
+                    <p>Dreptul administrativ și fiscal se ocupă cu organizarea autorităților publice, relațiile dintre stat și cetățeni, precum și gestionarea impozitelor, taxelor și obligațiilor fiscale.</p>
+                    <button class="learn-more" onclick="showPage('drept-administrativ')">Află mai multe</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="location" id="contact">
+            <p>Mă găsești la biroul meu din Oradea, Piața 1 Decembrie, nr 5 apart 5</p>
+            <a href="tel:+40747762956" class="cta-button">sună acum</a>
+        </section>
+
+        <section class="about" id="despre">
+            <div class="about-content">
+                <h2>Despre mine</h2>
+                <h3>Sunt aici pentru a vă ghida în orice problemă juridică</h3>
+                <p>Sunt avocat definitiv din 2000 și abordez fiecare spețã cu pragmatism și orientare clară către soluții. Am absolvit Universitatea de Științe Juridice „Lucian Blaga" din Sibiu, unde am obținut licența în Drept. Ulterior, am urmat studiile de master la Universitatea „Aurel Vlaicu" din Arad</p>
+                <img src="poze/poza3.jpg" alt="Rădac Daniela" class="about-image">
+                <p>Experiența mea profesională s-a format în timp prin gestionarea unor situații juridice variate, oferind sprijin concret și adaptat fiecărui context. Pun accent pe comunicare clară, seriozitate și implicare reală. Scopul meu este să ofer servicii juridice de înaltă calitate, centrate pe nevoile și obiectivele celor cu care colaborez.</p>
+            </div>
+        </section>
+
+        <section class="quote-section">
+            <blockquote>
+                „Nu este suficient să faci dreptate, trebuie să și pari că o faci."
+                <cite>— Aristotel</cite>
+            </blockquote>
+        </section>
+
+        <section class="collaboration">
+            <h2>Cum decurge colaborarea</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>1. Discutăm cazul tău</h3>
+                    <p>Stabilim o întâlnire, analizez situația și îți ofer o primă opinie juridică.</p>
+                </div>
+                <div class="step">
+                    <h3>2. Propun o strategie</h3>
+                    <p>Îți explic pașii legali necesari, durata estimativă și costurile implicate.</p>
+                </div>
+                <div class="step">
+                    <h3>3. Mă ocup de tot procesul</h3>
+                    <p>Redactez actele, te reprezint și te țin la curent cu fiecare etapă.</p>
+                    <img src="poze/poza2.jpg" alt="Legal process" class="step-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <h2>Întrebări frecvente</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        1. Cum pot programa o consultație?
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Poți programa o consultație sunând la numărul de telefon afișat sau completând formularul de contact de pe site.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        2. În ce domenii de drept oferiți servicii?
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Ofer servicii în drept penal, dreptul familiei, drept civil, drept comercial, drept administrativ și fiscal, și drept succesoral.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        3. Confidențialitatea este garantată?
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Da, confidențialitatea este garantată conform codului deontologic al avocaților. Toate informațiile discutate rămân strict confidențiale.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a onclick="showPage('home')">Home</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p>Contact cabinet de avocatură Rădac Daniela</p>
+            <div class="phone-display">
+                📞 <a href="tel:+40747762956">+40 747 762 956</a>
+            </div>
+            <a href="tel:+40747762956" class="cta-button" style="margin-top: 20px;">sună acum</a>
+        </footer>
+    </div>
+
+    <div id="drept-penal" class="page">
+        <div class="domain-page">
+            <div class="domain-hero">
+                <h1>Drept Penal</h1>
+            </div>
+            <div class="domain-content">
+                <button class="back-link" onclick="showPage('home')">← Înapoi la pagina principală</button>
+                
+                <div class="domain-intro">
+                    <h2>Drept Penal</h2>
+                    <p>Dreptul penal reglementează faptele considerate infracțiuni, stabilește pedepsele și urmărește protejarea ordinii publice, a persoanelor și valorilor sociale fundamentale. În calitate de avocat specializat în drept penal, ofer asistență juridică completă atât pentru persoane acuzate de infracțiuni, cât și pentru victime.</p>
+                </div>
+
+                <div class="domain-services">
+                    <h3>Servicii în Drept Penal</h3>
+                    <ul>
+                        <li>Asistență juridică în faza de urmărire penală și în fața instanțelor</li>
+                        <li>Apărare în dosare penale pentru toate categoriile de infracțiuni</li>
+                        <li>Reprezentarea victimelor și constituire parte civilă</li>
+                        <li>Contestații și căi de atac: apel, recurs, revizuire</li>
+                        <li>Redactare plângeri penale și denunțuri</li>
+                        <li>Asistență în proceduri de mediere în materie penală</li>
+                        <li>Consultanță preventivă în conformitate cu legislația penală</li>
+                    </ul>
+                </div>
+
+                <div class="why-section">
+                    <h3>De ce să alegi serviciile mele în Drept Penal?</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <h4>Răspuns Rapid</h4>
+                            <p>În materie penală, timpul este esențial. Intervin prompt pentru protejarea drepturilor dumneavoastră de la primele faze ale procesului penal.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Apărare Strategică</h4>
+                            <p>Elaborez o strategie de apărare solidă, bazată pe o analiză detaliată a dovezilor și a contextului juridic al cazului.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Experiență Dovedită</h4>
+                            <p>Cu peste două decenii de practică în drept penal, am gestionat cu succes cazuri complexe, de la contravenții până la infracțiuni grave.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Confidențialitate Totală</h4>
+                            <p>Respect strict secretul profesional și confidențialitatea totală a informațiilor primite, garantând discreție absolută.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-section">
+                    <h3>Cum vă apăr în proceduri penale</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Evaluare Urgentă</h4>
+                                <p>Analizez rapid situația juridică, identificăm acuzațiile și evaluăm probele existente. Vă explic drepturile procedurale și strategiile posibile de apărare.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Asistență în Urmărire Penală</h4>
+                                <p>Vă reprezint în fața organelor de cercetare penală, asigurându-mă că procedura este respectată și drepturile dumneavoastră sunt protejate în toate fazele.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Apărare în Instanță</h4>
+                                <p>Asigur reprezentare profesionistă în toate ședințele de judecată, prezentând probe, interogând martori și susținând pledoarii convingătoare.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Căi de Atac</h4>
+                                <p>Dacă este necesar, formulez și susțin apeluri, recursuri sau alte căi de atac pentru a obține o soluție favorabilă sau pentru a contesta hotărâri nelegale.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="domain-cta">
+                    <h3>Aveți nevoie urgentă de asistență penală?</h3>
+                    <p>Contactați-mă imediat pentru o consultație. În materie penală, fiecare moment contează.</p>
+                    <a href="tel:+40747762956" class="cta-button">Sună acum</a>
+                </div>
+
+                <button class="back-link" onclick="showPage('home')" style="margin-top: 40px;">← Înapoi la pagina principală</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dreptul-familiei" class="page">
+        <div class="domain-page">
+            <div class="domain-hero">
+                <h1>Dreptul Familiei</h1>
+            </div>
+            <div class="domain-content">
+                <button class="back-link" onclick="showPage('home')">← Înapoi la pagina principală</button>
+                
+                <div class="domain-intro">
+                    <h2>Dreptul Familiei</h2>
+                    <p>Dreptul familiei se ocupă cu divorțuri, relațiile personale și patrimoniale dintre soți, părinți și copii, precum și cu adopția și tutela. Problemele de familie sunt deosebit de sensibile și necesită o abordare empatică, dar în același timp profesionistă și eficientă.</p>
+                </div>
+
+                <div class="domain-services">
+                    <h3>Servicii în Dreptul Familiei</h3>
+                    <ul>
+                        <li>Proceduri de divorț (de comun acord și contencios)</li>
+                        <li>Stabilirea autorității părintești și a domiciliului copilului</li>
+                        <li>Drept de vizită și program de vizitare</li>
+                        <li>Pensie de întreținere pentru copii și soț</li>
+                        <li>Partaj bunuri comune din timpul căsătoriei</li>
+                        <li>Adopție, tutelă și curatelă</li>
+                        <li>Contestarea paternității sau recunoașterea acesteia</li>
+                        <li>Protecția victimelor violenței domestice</li>
+                        <li>Modificarea măsurilor privind copiii</li>
+                    </ul>
+                </div>
+
+                <div class="why-section">
+                    <h3>De ce să alegi serviciile mele în Dreptul Familiei?</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <h4>Abordare Empatică</h4>
+                            <p>Înțeleg că problemele de familie sunt sensibile și emoționale. Ofer sprijin juridic cu empatie și respect pentru situația personală a fiecăruia.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Protejarea Copiilor</h4>
+                            <p>În toate cazurile care implică copii, prioritatea mea este interesul superior al acestora, asigurându-mă că deciziile respectă nevoile lor.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Soluții Amiabile</h4>
+                            <p>Când este posibil, promovez soluții prin mediere și negociere, pentru a evita conflictele prelungite și a păstra relații civilizate.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Discreție Maximă</h4>
+                            <p>Respect confidențialitatea totală și discrețiunea absolută în toate aspectele cazului dumneavoastră de familie.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-section">
+                    <h3>Cum vă ajut în probleme de familie</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Consultație Confidențială</h4>
+                                <p>Discutăm despre situația dumneavoastră într-un cadru privat și confidențial. Analizez aspectele juridice și vă explic opțiunile disponibile.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Strategie Personalizată</h4>
+                                <p>Elaborez o strategie adaptată situației și obiectivelor dumneavoastră, fie că este vorba despre o soluție amiabilă sau despre reprezentare în instanță.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Negociere și Mediere</h4>
+                                <p>Dacă este posibil, facilitez discuțiile și negocierile pentru a ajunge la un acord benefic pentru ambele părți, evitând astfel conflictele în instanță.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Reprezentare în Instanță</h4>
+                                <p>Când este necesar, vă reprezint profesionist în fața instanțelor, apărând interesele dumneavoastră și ale copiilor cu fermitate și dedicare.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="domain-cta">
+                    <h3>Aveți nevoie de asistență în probleme de familie?</h3>
+                    <p>Contactați-mă pentru o consultație confidențială. Vă voi oferi sprijinul juridic necesar într-o perioadă dificilă.</p>
+                    <button class="cta-button" onclick="window.location.href='tel:+40747762956'">Programează o consultație</button>
+                </div>
+
+                <button class="back-link" onclick="showPage('home')" style="margin-top: 40px;">← Înapoi la pagina principală</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="drept-civil" class="page">
+        <div class="domain-page">
+            <div class="domain-hero">
+                <h1>Drept Civil</h1>
+            </div>
+            <div class="domain-content">
+                <button class="back-link" onclick="showPage('home')">← Înapoi la pagina principală</button>
+                
+                <div class="domain-intro">
+                    <h2>Drept Civil</h2>
+                    <p>Dreptul civil este ramura dreptului privat care reglementează raporturile juridice dintre persoane fizice și juridice. Acesta acoperă domenii precum proprietatea, obligațiile, contractele, familia și moștenirile, având rolul de a asigura echilibrul și protecția intereselor individuale.</p>
+                </div>
+
+                <div class="domain-services">
+                    <h3>Printre serviciile pe care le ofer se numără</h3>
+                    <ul>
+                        <li>Consultanță și reprezentare în litigii civile</li>
+                        <li>Dreptul proprietății și revendicări imobiliare</li>
+                        <li>Răspundere civilă delictuală și contractuală</li>
+                        <li>Contracte civile: redactare, negociere, analiză juridică</li>
+                        <li>Partaje, moșteniri și succesiuni</li>
+                    </ul>
+                </div>
+
+                <div class="why-section">
+                    <h3>De ce să alegi serviciile mele în Drept Civil?</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <h4>Experiență Vastă</h4>
+                            <p>Cu peste 25 de ani de practică în drept civil, am gestionat cu succes sute de cazuri complexe, de la litigii de proprietate până la succesiuni complicate.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Abordare Personalizată</h4>
+                            <p>Fiecare caz este unic. Analizez cu atenție specificul situației dumneavoastră și elaborez o strategie juridică adaptată obiectivelor și nevoilor concrete.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Comunicare Transparentă</h4>
+                            <p>Vă țin la curent în permanență cu evoluția cazului, explicând în termeni clari fiecare etapă și decizie juridică, fără jargon complicat.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Soluții Eficiente</h4>
+                            <p>Orientare pragmatică către rezultate, căutând cele mai eficiente modalități de rezolvare, fie prin negociere, mediere sau reprezentare în instanță.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-section">
+                    <h3>Cum vă pot ajuta în probleme de Drept Civil</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Consultație Inițială</h4>
+                                <p>Analizăm situația dumneavoastră juridică în detaliu, identificăm problemele și posibilele soluții. Vă ofer o primă opinie profesionistă și vă explic drepturile și obligațiile.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Documentație și Strategie</h4>
+                                <p>Pregătim documentația necesară, redactăm contractele sau cererile de chemare în judecată, și stabilim strategia juridică cea mai potrivită pentru cazul dumneavoastră.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Reprezentare și Urmărire</h4>
+                                <p>Vă reprezint în fața instanțelor sau în negocierile cu partea adversă, urmărind în permanență evoluția procesului și adaptând strategia după necesități.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Finalizare și Execuție</h4>
+                                <p>Asigur implementarea deciziilor judecătorești, executarea hotărârilor și finalizarea cu succes a procedurii juridice, protejând interesele dumneavoastră până la final.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="domain-cta">
+                    <h3>Aveți nevoie de asistență în Drept Civil?</h3>
+                    <p>Contactați-mă pentru o consultație și să discutăm despre situația dumneavoastră juridică.</p>
+                    <button class="cta-button" onclick="window.location.href='tel:+40747762956'">Programează o consultație</button>
+                </div>
+
+                <button class="back-link" onclick="showPage('home')" style="margin-top: 40px;">← Înapoi la pagina principală</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dreptul-muncii" class="page">
+        <div class="domain-page">
+            <div class="domain-hero">
+                <h1>Dreptul Muncii</h1>
+            </div>
+            <div class="domain-content">
+                <button class="back-link" onclick="showPage('home')">← Înapoi la pagina principală</button>
+                
+                <div class="domain-intro">
+                    <h2>Dreptul Muncii</h2>
+                    <p>Dreptul muncii reglementează relațiile dintre angajatori și angajați, protejând drepturile lucrătorilor și stabilind obligațiile reciproce. În calitate de avocat specializat în drept al muncii, ofer asistență juridică atât pentru angajați, cât și pentru angajatori, asigurând respectarea legislației și rezolvarea conflictelor de muncă.</p>
+                </div>
+
+                <div class="domain-services">
+                    <h3>Servicii în Dreptul Muncii</h3>
+                    <ul>
+                        <li>Consultanță pentru angajați și angajatori</li>
+                        <li>Redactare și analiză contracte individuale de muncă</li>
+                        <li>Contestare concedieri și încetări ale contractului de muncă</li>
+                        <li>Negociere contracte colective de muncă</li>
+                        <li>Recuperare salarii și drepturi salariale</li>
+                        <li>Reprezentare în conflicte de muncă și litigii cu inspectoratul muncii</li>
+                        <li>Acorduri de confidențialitate și clauze de neconcurență</li>
+                        <li>Asistență în cazuri de discriminare și hărțuire la locul de muncă</li>
+                    </ul>
+                </div>
+
+                <div class="why-section">
+                    <h3>De ce să alegi serviciile mele în Dreptul Muncii?</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <h4>Expertiză Duală</h4>
+                            <p>Am experiență în reprezentarea atât a angajaților, cât și a angajatorilor, ceea ce îmi oferă o perspectivă completă asupra problemelor de muncă.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Soluții Preventive</h4>
+                            <p>Ofer consultanță preventivă pentru a evita conflictele de muncă și pentru a asigura conformitatea cu legislația în vigoare.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Negociere Eficientă</h4>
+                            <p>Încerc să rezolv conflictele prin negociere și mediere, economisind timp și costuri pentru clienți.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <h4>Apărare Fermă</h4>
+                            <p>Când negocierea nu este posibilă, vă reprezint cu fermitate în fața instanțelor și a organelor de control.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-section">
+                    <h3>Cum vă ajut în conflicte de muncă</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Analiza Situației</h4>
+                                <p>Evaluez contractul de muncă, documentele relevante și circumstanțele cazului pentru a identifica drepturile și obligațiile părților.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Strategie Juridică</h4>
+                                <p>Elaborez o strategie adaptată obiectivelor dumneavoastră, fie că este vorba despre recuperare de drepturi sau apărare împotriva acuzațiilor.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Negociere și Mediere</h4>
+                                <p>Facilitez discuțiile cu cealaltă parte pentru a ajunge la o soluție amiabilă, evitând procedurile lungi și costisitoare.</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Reprezentare în Instanță</h4>
+                                <p>Dacă este necesar, vă reprezint în fața tribunalului de muncă, susținând cauza cu argumente solide și probe concludente.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="domain-cta">
+                    <h3>Aveți un conflict de muncă?</h3>
+                    <p>Contactați-mă pentru o consultație și să discutăm despre drepturile și opțiunile dumneavoastră.</p>
+                    <button class="cta-button" onclick="window.location.href='tel:+40747762956'">Programează o consultație</button>
+                </div>
+
+                <button class="back-link" onclick="showPage('home')" style="margin-top: 40px;">← Înapoi la pagina principală</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="drept-succesoral" class="page">
+        <div class="domain-page">
+            <div class="domain-hero">
+                <h1>Drept Succesoral</h1>
+            </div>
+            <div class="domain-content">
+                <button class="back-link" onclick="showPage('home')">← Înapoi la pagina principală</button>
+                
+                <div class="domain-intro">
+                    <h2>Drept Succesoral</h2>
+                    <p>Dreptul succesoral reglementează transmiterea patrimoniului unei persoane decedate către moștenitori, stabilind condițiile, ordinea și categoriile de moștenitori legali sau testamentari.</p>
+                </div>
+
+                <div class="domain-services">
+                    <h3>Servicii în Drept Succesoral</h3>
+                    <ul>
+                        <li>Consultanță în materie de succesiuni și moșteniri</li>
+                        <li>Redactare testamente și acte de moștenire</li>
+                        <li>Proceduri de acceptare și renunțare la moștenire</li>
+                        <li>Partaje succesorale și stabilirea cotelor</li>
+                        <li>Contestarea testamentelor și a dispozițiilor testamentare</li>
+                        <li>Recuperare bunuri din succesiune</li>
+                        <li>Reprezentare în litigii succesorale</li>
+                        <li>Certificate de moștenitor</li>
+                    </ul>
+                </div>
+
+                <div class="domain-cta">
+                    <h3>Aveți nevoie de asistență juridică?</h3>
+                    <p>Contactați-mă pentru o consultație personalizată.</p>
+                    <button class="cta-button" onclick="window.location.href='tel:+40747762956'">Programează o consultație</button>
+                </div>
+
+                <button class="back-link" onclick="showPage('home')" style="margin-top: 40px;">← Înapoi la pagina principală</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="drept-administrativ" class="page">
+        <div class="domain-page">
+            <div class="domain-hero">
+                <h1>Drept Administrativ și Fiscal</h1>
+            </div>
+            <div class="domain-content">
+                <button class="back-link" onclick="showPage('home')">← Înapoi la pagina principală</button>
+                
+                <div class="domain-intro">
+                    <h2>Drept Administrativ și Fiscal</h2>
+                    <p>Dreptul administrativ și fiscal se ocupă cu organizarea autorităților publice, relațiile dintre stat și cetățeni, precum și gestionarea impozitelor, taxelor și obligațiilor fiscale.</p>
+                </div>
+
+                <div class="domain-services">
+                    <h3>Servicii în Drept Administrativ și Fiscal</h3>
+                    <ul>
+                        <li>Contestații împotriva actelor administrative</li>
+                        <li>Reprezentare în fața autorităților publice</li>
+                        <li>Consultanță fiscală pentru persoane fizice și juridice</li>
+                        <li>Contestații decizii ANAF și organelor fiscale</li>
+                        <li>Apărare în fața Curții de Conturi</li>
+                        <li>Asistență în inspecții fiscale</li>
+                        <li>Recuperare taxe și impozite plătite necuvenit</li>
+                        <li>Litigii cu autorități locale și centrale</li>
+                    </ul>
+                </div>
+
+                <div class="domain-cta">
+                    <h3>Aveți nevoie de asistență juridică?</h3>
+                    <p>Contactați-mă pentru o consultație personalizată.</p>
+                    <button class="cta-button" onclick="window.location.href='tel:+40747762956'">Programează o consultație</button>
+                </div>
+
+                <button class="back-link" onclick="showPage('home')" style="margin-top: 40px;">← Înapoi la pagina principală</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="alte-servicii-1" class="page">
+        <div class="domain-page">
+            <div class="domain-hero">
+                <h1>Servicii Comerciale</h1>
+            </div>
+            <div class="domain-content">
+                <button class="back-link" onclick="showPage('home')">← Înapoi la pagina principală</button>
+                
+                <div class="domain-intro">
+                    <h2>Servicii Comerciale</h2>
+                    <p>Ofer servicii juridice complete pentru înființarea și dezvoltarea afacerilor, redactare contracte comerciale și reprezentare în litigii comerciale.</p>
+                </div>
+
+                <div class="domain-services">
+                    <h3>Servicii Oferite</h3>
+                    <ul>
+                        <li>Înființare firme (SRL, PFA, alte forme juridice)</li>
+                        <li>Modificări act constitutiv</li>
+                        <li>Contracte comerciale</li>
+                        <li>Recuperare creanțe comerciale</li>
+                        <li>Litigii comerciale și reprezentare în fața instanțelor</li>
+                    </ul>
+                </div>
+
+                <div class="domain-cta">
+                    <h3>Aveți nevoie de asistență juridică pentru afacerea dumneavoastră?</h3>
+                    <p>Contactați-mă pentru o consultație personalizată.</p>
+                    <button class="cta-button" onclick="window.location.href='tel:+40747762956'">Programează o consultație</button>
+                </div>
+
+                <button class="back-link" onclick="showPage('home')" style="margin-top: 40px;">← Înapoi la pagina principală</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="alte-servicii-2" class="page">
+        <div class="domain-page">
+            <div class="domain-hero">
+                <h1>Consultanță Juridică Specializată</h1>
+            </div>
+            <div class="domain-content">
+                <button class="back-link" onclick="showPage('home')">← Înapoi la pagina principală</button>
+                
+                <div class="domain-intro">
+                    <h2>Consultanță Juridică Specializată</h2>
+                    <p>Servicii juridice personalizate, adaptate nevoilor specifice ale fiecărui client, cu accent pe calitate și profesionalism.</p>
+                </div>
+
+                <div class="domain-services">
+                    <h3>Servicii Oferite</h3>
+                    <ul>
+                        <li>Consultanța juridică personalizată</li>
+                        <li>Mediere și negociere</li>
+                        <li>Emitere opinii legale</li>
+                        <li>Audit juridic pentru persoane fizice și juridice</li>
+                    </ul>
+                </div>
+
+                <div class="domain-cta">
+                    <h3>Aveți nevoie de consultanță juridică specializată?</h3>
+                    <p>Contactați-mă pentru o consultație personalizată.</p>
+                    <button class="cta-button" onclick="window.location.href='tel:+40747762956'">Programează o consultație</button>
+                </div>
+
+                <button class="back-link" onclick="showPage('home')" style="margin-top: 40px;">← Înapoi la pagina principală</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
