@@ -56,6 +56,74 @@
             background-clip: text;
         }
 
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-close:hover {
+            background: #d4af37;
+            color: #000;
+        }
+
+        .mobile-nav {
+            padding: 80px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 15px 20px;
+            border-left: 3px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .mobile-nav a:hover {
+            border-left-color: #d4af37;
+            background: rgba(212, 175, 55, 0.1);
+            padding-left: 30px;
+        }
+
+        .mobile-nav hr {
+            margin: 10px 0;
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
         .page {
             display: none;
         }
@@ -283,18 +351,38 @@
         }
 
         @media (max-width: 768px) {
+            /* Disable heavy animations on mobile for better performance */
+            .service-card::before,
+            .service-card::after,
+            .learn-more::before,
+            .cta-button::before {
+                display: none;
+            }
+
+            .service-card,
+            .learn-more,
+            .cta-button {
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
             .hero h1 {
                 font-size: 32px;
                 letter-spacing: 2px;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
+            }
+
+            .hero::before {
+                background: rgba(0,0,0,0.3);
             }
 
             .profile-container {
                 flex-direction: column;
-                padding: 140px 20px 30px 20px;
-                margin-top: 40px;
-                margin-bottom: 20px;
+                padding: 140px 20px 20px 20px;
+                margin-top: 20px;
+                margin-bottom: 10px;
                 max-width: 90%;
+                backdrop-filter: none;
+                background-color: rgba(255,255,255,0.98);
             }
 
             .profile-image-wrapper {
@@ -313,19 +401,30 @@
             .profile-text {
                 text-align: center;
                 font-size: 22px;
-                margin-top: 20px;
+                margin-top: 10px;
+                margin-bottom: 10px;
             }
 
             .cta-button {
                 font-size: 18px;
                 padding: 15px 40px;
-                margin-bottom: 15px;
+                margin-bottom: 10px;
             }
 
             .tagline {
                 font-size: 18px;
                 padding: 0 20px;
-                margin-top: 15px;
+                margin-top: 10px;
+            }
+
+            .about-image {
+                width: 250px;
+                height: 350px;
+            }
+
+            .step-image {
+                max-width: 400px;
+                height: 500px;
             }
 
             .service-cards {
@@ -662,8 +761,8 @@
         }
 
         .about-image {
-            width: 300px;
-            height: 300px;
+            width: 250px;
+            height: 350px;
             border-radius: 20px;
             object-fit: cover;
             margin: 30px auto;
@@ -769,8 +868,8 @@
 
         .step-image {
             width: 100%;
-            max-width: 600px;
-            height: 300px;
+            max-width: 400px;
+            height: 500px;
             object-fit: cover;
             border-radius: 20px;
             margin-top: 30px;
@@ -1257,13 +1356,30 @@
 </head>
 <body>
     <header>
-        <div class="menu-icon">
+        <div class="menu-icon" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
         <div class="logo">AVOCAT RĂDAC DANIELA</div>
     </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-close" onclick="toggleMenu()">×</div>
+        <nav class="mobile-nav">
+            <a onclick="showPage('home'); toggleMenu();">Acasă</a>
+            <a onclick="showPage('home'); setTimeout(() => document.getElementById('servicii').scrollIntoView({behavior: 'smooth'}), 100); toggleMenu();">Servicii</a>
+            <a onclick="showPage('home'); setTimeout(() => document.getElementById('despre').scrollIntoView({behavior: 'smooth'}), 100); toggleMenu();">Despre Mine</a>
+            <a onclick="showPage('home'); setTimeout(() => document.getElementById('contact').scrollIntoView({behavior: 'smooth'}), 100); toggleMenu();">Contact</a>
+            <hr style="border-color: rgba(255,255,255,0.2); margin: 20px 0;">
+            <a onclick="showPage('dreptul-familiei'); toggleMenu();">Dreptul Familiei</a>
+            <a onclick="showPage('drept-penal'); toggleMenu();">Drept Penal</a>
+            <a onclick="showPage('drept-civil'); toggleMenu();">Drept Civil</a>
+            <a onclick="showPage('dreptul-muncii'); toggleMenu();">Dreptul Muncii</a>
+            <a onclick="showPage('drept-succesoral'); toggleMenu();">Drept Succesoral</a>
+            <a onclick="showPage('drept-administrativ'); toggleMenu();">Drept Administrativ</a>
+        </nav>
+    </div>
 
     <div id="home" class="page active">
         <section class="hero">
@@ -1825,6 +1941,12 @@
             carousel1: 0,
             carousel2: 0
         };
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
 
         // Debounce function for better performance
         function debounce(func, wait) {
