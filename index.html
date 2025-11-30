@@ -169,6 +169,8 @@
             overflow: hidden;
             z-index: 1;
             letter-spacing: 1px;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .cta-button::before {
@@ -224,6 +226,9 @@
             scroll-behavior: smooth;
             scrollbar-width: none;
             -ms-overflow-style: none;
+            -webkit-overflow-scrolling: touch;
+            transform: translateZ(0);
+            will-change: scroll-position;
         }
 
         .carousel-track::-webkit-scrollbar {
@@ -237,6 +242,8 @@
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .carousel-image:hover {
@@ -276,6 +283,55 @@
         }
 
         @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+                letter-spacing: 2px;
+                margin-bottom: 20px;
+            }
+
+            .profile-container {
+                flex-direction: column;
+                padding: 140px 20px 30px 20px;
+                margin-top: 40px;
+                margin-bottom: 20px;
+                max-width: 90%;
+            }
+
+            .profile-image-wrapper {
+                position: absolute;
+                left: 50%;
+                top: -120px;
+                transform: translateX(-50%);
+            }
+
+            .profile-image {
+                width: 280px;
+                height: 280px;
+                border: 5px solid #d4af37;
+            }
+
+            .profile-text {
+                text-align: center;
+                font-size: 22px;
+                margin-top: 20px;
+            }
+
+            .cta-button {
+                font-size: 18px;
+                padding: 15px 40px;
+                margin-bottom: 15px;
+            }
+
+            .tagline {
+                font-size: 18px;
+                padding: 0 20px;
+                margin-top: 15px;
+            }
+
+            .service-cards {
+                grid-template-columns: 1fr;
+            }
+
             .carousel-image {
                 min-width: 280px;
                 height: 350px;
@@ -289,6 +345,36 @@
                 width: 40px;
                 height: 40px;
                 font-size: 18px;
+            }
+
+            .carousel-btn.prev {
+                left: 10px;
+            }
+
+            .carousel-btn.next {
+                right: 10px;
+            }
+
+            .steps {
+                gap: 40px;
+            }
+
+            .domain-hero h1 {
+                font-size: 32px;
+            }
+
+            .domain-intro h2 {
+                font-size: 28px;
+            }
+
+            .domain-services,
+            .approach-section {
+                padding: 30px 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
         }
 
@@ -352,6 +438,8 @@
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.1);
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .service-card::before {
@@ -1200,19 +1288,19 @@
             <div class="carousel-container">
                 <button class="carousel-btn prev" onclick="moveCarousel('carousel1', -1)">❮</button>
                 <div class="carousel-track" id="carousel1">
-                    <img src="poze/1.jpg" alt="Imagine 1" class="carousel-image">
-                    <img src="poze/2.jpg" alt="Imagine 2" class="carousel-image">
-                    <img src="poze/3.jpg" alt="Imagine 3" class="carousel-image">
-                    <img src="poze/4.jpg" alt="Imagine 4" class="carousel-image">
-                    <img src="poze/5.jpg" alt="Imagine 5" class="carousel-image">
-                    <img src="poze/6.jpg" alt="Imagine 6" class="carousel-image">
-                    <img src="poze/7.jpg" alt="Imagine 7" class="carousel-image">
-                    <img src="poze/8.jpg" alt="Imagine 8" class="carousel-image">
-                    <img src="poze/9.jpg" alt="Imagine 9" class="carousel-image">
-                    <img src="poze/10.jpg" alt="Imagine 10" class="carousel-image">
-                    <img src="poze/11.jpg" alt="Imagine 11" class="carousel-image">
-                    <img src="poze/12.jpg" alt="Imagine 12" class="carousel-image">
-                    <img src="poze/13.jpg" alt="Imagine 13" class="carousel-image">
+                    <img src="poze/1.jpg" alt="Imagine 1" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/2.jpg" alt="Imagine 2" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/3.jpg" alt="Imagine 3" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/4.jpg" alt="Imagine 4" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/5.jpg" alt="Imagine 5" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/6.jpg" alt="Imagine 6" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/7.jpg" alt="Imagine 7" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/8.jpg" alt="Imagine 8" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/9.jpg" alt="Imagine 9" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/10.jpg" alt="Imagine 10" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/11.jpg" alt="Imagine 11" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/12.jpg" alt="Imagine 12" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/13.jpg" alt="Imagine 13" class="carousel-image" loading="lazy" decoding="async">
                 </div>
                 <button class="carousel-btn next" onclick="moveCarousel('carousel1', 1)">❯</button>
             </div>
@@ -1308,19 +1396,17 @@
             <div class="carousel-container">
                 <button class="carousel-btn prev" onclick="moveCarousel('carousel2', -1)">❮</button>
                 <div class="carousel-track" id="carousel2">
-                    <img src="poze/14.jpg" alt="Imagine 14" class="carousel-image">
-                    <img src="poze/15.jpg" alt="Imagine 15" class="carousel-image">
-                    <img src="poze/16.jpg" alt="Imagine 16" class="carousel-image">
-                    <img src="poze/17.jpg" alt="Imagine 17" class="carousel-image">
-                    <img src="poze/18.jpg" alt="Imagine 18" class="carousel-image">
-                    <img src="poze/19.jpg" alt="Imagine 19" class="carousel-image">
-                    <img src="poze/20.jpg" alt="Imagine 20" class="carousel-image">
-                    <img src="poze/21.jpg" alt="Imagine 21" class="carousel-image">
-                    <img src="poze/22.jpg" alt="Imagine 22" class="carousel-image">
-                    <img src="poze/23.jpg" alt="Imagine 23" class="carousel-image">
-                    <img src="poze/24.jpg" alt="Imagine 24" class="carousel-image">
-                    <img src="poze/25.jpg" alt="Imagine 25" class="carousel-image">
-                    <img src="poze/26.jpg" alt="Imagine 26" class="carousel-image">
+                    <img src="poze/14.jpg" alt="Imagine 14" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/15.jpg" alt="Imagine 15" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/16.jpg" alt="Imagine 16" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/17.jpg" alt="Imagine 17" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/18.jpg" alt="Imagine 18" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/19.jpg" alt="Imagine 19" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/20.jpg" alt="Imagine 20" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/21.jpg" alt="Imagine 21" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/22.jpg" alt="Imagine 22" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/23.jpg" alt="Imagine 23" class="carousel-image" loading="lazy" decoding="async">
+                    <img src="poze/24.jpg" alt="Imagine 24" class="carousel-image" loading="lazy" decoding="async">
                 </div>
                 <button class="carousel-btn next" onclick="moveCarousel('carousel2', 1)">❯</button>
             </div>
@@ -1499,129 +1585,6 @@
 
                 <button class="back-link" onclick="showPage('home')" style="margin-top: 40px;">← Înapoi la pagina principală</button>
             </div>
-
-            <section class="collaboration">
-                <h2>Cum decurge colaborarea</h2>
-                <div class="steps">
-                    <div class="step">
-                        <h3>1. Discutăm cazul tău</h3>
-                        <p>Stabilim o întâlnire, analizez situația și îți ofer o primă opinie juridică.</p>
-                    </div>
-                    <div class="step">
-                        <h3>2. Propun o strategie</h3>
-                        <p>Îți explic pașii legali necesari, durata estimativă și costurile implicate.</p>
-                    </div>
-                    <div class="step">
-                        <h3>3. Mă ocup de tot procesul</h3>
-                        <p>Redactez actele, te reprezint și te țin la curent cu fiecare etapă.</p>
-                        <img src="poze/p3.jpg" alt="Legal process" class="step-image">
-                    </div>
-                </div>
-            </section>
-
-            <section class="faq">
-                <h2>Întrebări frecvente</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            1. Cum pot programa o consultație?
-                            <span>▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            Poți programa o consultație sunând la numărul de telefon afișat sau completând formularul de contact de pe site.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            2. În ce domenii de drept oferiți servicii?
-                            <span>▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            Ofer servicii în drept penal, dreptul familiei, drept civil, drept comercial, drept administrativ și fiscal, și drept succesoral.
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            3. Confidențialitatea este garantată?
-                            <span>▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            Da, confidențialitatea este garantată conform codului deontologic al avocaților. Toate informațiile discutate rămân strict confidențiale.
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <footer>
-                <div class="footer-content">
-                    <div class="footer-column">
-                        <div class="footer-logo">RĂDAC DANIELA</div>
-                        <p class="footer-description">Cabinet de Avocatură cu experiență din 2000. Oferim servicii juridice de calitate cu profesionalism, dedicare și implicare reală.</p>
-                        <div class="social-links">
-                            <a href="#" class="social-link">@</a>
-                            <a href="tel:+40747762956" class="social-link">tel</a>
-                            <a href="#" class="social-link">loc</a>
-                        </div>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3>Navigare Rapidă</h3>
-                        <div class="quick-links">
-                            <a onclick="showPage('home')">Acasă</a>
-                            <a onclick="showPage('home'); setTimeout(() => document.getElementById('servicii').scrollIntoView({behavior: 'smooth'}), 100)">Servicii</a>
-                            <a onclick="showPage('home'); setTimeout(() => document.getElementById('despre').scrollIntoView({behavior: 'smooth'}), 100)">Despre Mine</a>
-                            <a onclick="showPage('home'); setTimeout(() => document.getElementById('contact').scrollIntoView({behavior: 'smooth'}), 100)">Contact</a>
-                            <a onclick="showPage('dreptul-familiei')">Dreptul Familiei</a>
-                            <a onclick="showPage('drept-penal')">Drept Penal</a>
-                            <a onclick="showPage('drept-civil')">Drept Civil</a>
-                        </div>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3>Domenii de Practică</h3>
-                        <div class="quick-links">
-                            <a onclick="showPage('dreptul-familiei')">Dreptul Familiei - Divorț</a>
-                            <a onclick="showPage('drept-penal')">Drept Penal</a>
-                            <a onclick="showPage('drept-civil')">Drept Civil</a>
-                            <a onclick="showPage('dreptul-muncii')">Dreptul Muncii</a>
-                            <a onclick="showPage('drept-succesoral')">Drept Succesoral</a>
-                            <a onclick="showPage('drept-administrativ')">Drept Administrativ</a>
-                        </div>
-                    </div>
-
-                    <div class="footer-column">
-                        <h3>Contact</h3>
-                        <div class="contact-info-footer">
-                            <div class="contact-item">
-                                <span class="contact-item-icon">Adresa:</span>
-                                <div>
-                                    <p>Oradea, Bihor</p>
-                                    <p>Piața 1 Decembrie, nr 5, apart 5</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <span class="contact-item-icon">Telefon:</span>
-                                <div>
-                                    <a href="tel:+40747762956">+40 747 762 956</a>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <span class="contact-item-icon">Program:</span>
-                                <div>
-                                    <p>Luni - Vineri: 9:00 - 17:00</p>
-                                    <p>Program cu programare</p>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="tel:+40747762956" class="cta-button" style="margin-top: 20px; font-size: 16px; padding: 12px 30px;">Sună Acum</a>
-                    </div>
-                </div>
-
-                <div class="footer-bottom">
-                </div>
-            </footer>
         </div>
     </div>
 
@@ -1863,11 +1826,30 @@
             carousel2: 0
         };
 
+        // Debounce function for better performance
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
         function moveCarousel(carouselId, direction) {
             const track = document.getElementById(carouselId);
-            const imageWidth = 370; // 350px width + 20px gap
+            const imageWidth = 370; // 350px width + 20px gap (desktop)
+            const mobileImageWidth = 300; // 280px width + 20px gap (mobile)
             
-            carouselPositions[carouselId] += direction * imageWidth * 3; // Move 3 images at a time
+            // Detect if mobile
+            const isMobile = window.innerWidth <= 768;
+            const scrollAmount = isMobile ? mobileImageWidth : imageWidth;
+            
+            // Move only 1 image at a time
+            carouselPositions[carouselId] += direction * scrollAmount;
             
             // Get the total scrollable width
             const maxScroll = track.scrollWidth - track.clientWidth;
@@ -1901,18 +1883,31 @@
             });
         });
 
+        // Debounced scroll handler for smooth anchors
+        const debouncedScroll = debounce((target) => {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 50);
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    debouncedScroll(target);
                 }
             });
         });
+
+        // Optimize images loading on mobile
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.src;
+            });
+        }
     </script>
 </body>
 </html>
